@@ -76,7 +76,6 @@ input {
   background: darkgreen;
 }
 
-/* Медиазапросы для адаптивности */
 @media (max-width: 768px) {
   .input-section {
     align-items: center;

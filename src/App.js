@@ -7,7 +7,7 @@ const App = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [lastMessageId, setLastMessageId] = useState(""); // Для хранения ID последнего отправленного сообщения
+  const [lastMessageId, setLastMessageId] = useState("");
 
   const sendMessage = async () => {
     if (!idInstance || !apiTokenInstance || !phoneNumber || !message) return;
