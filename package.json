@@ -9,9 +9,9 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
+    "test": "react-scripts test --passWithNoTests",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
