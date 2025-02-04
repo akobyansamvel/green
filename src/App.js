@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 
 const App = () => {
@@ -34,9 +34,11 @@ const App = () => {
 
   const apiUrl = "https://1103.api.green-api.com";
 
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     try {
-      const response = await fetch(`${apiUrl}/waInstance${idInstance}/receiveNotification/${apiTokenInstance}?receiveTimeout=5`);
+      const response = await fetch(
+        `${apiUrl}/waInstance${idInstance}/receiveNotification/${apiTokenInstance}?receiveTimeout=5`
+      );
       const data = await response.json();
 
       if (!data || !data.body) {
@@ -63,12 +65,12 @@ const App = () => {
     } catch (error) {
       console.error("Ошибка при получении сообщений:", error);
     }
-  };
+  }, [idInstance, apiTokenInstance, lastMessageId]);
 
   useEffect(() => {
     const interval = setInterval(fetchMessages, 5000);
-    return () => clearInterval(interval); 
-  }, [idInstance, apiTokenInstance, lastMessageId]); 
+    return () => clearInterval(interval);
+  }, [fetchMessages]);
 
   return (
     <div className="container">
@@ -90,7 +92,9 @@ const App = () => {
 
       <div className="message-input">
         <input placeholder="Message" value={message} onChange={(e) => setMessage(e.target.value)} />
-        <button onClick={sendMessage} className="send-button">Send</button>
+        <button onClick={sendMessage} className="send-button">
+          Send
+        </button>
       </div>
     </div>
   );
