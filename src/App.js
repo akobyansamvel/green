@@ -73,7 +73,7 @@ const App = () => {
   }, [fetchMessages]);
 
   return (
-    <div className="container">
+    <div className="container" >
       <h1 className="header">Green API</h1>
 
       <div className="input-section">
